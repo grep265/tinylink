@@ -1,8 +1,13 @@
-# TinyLink
+# <p align="center">TinyLink</p>
+
+<p align="center">
+  <img src="images/tinylink-logo.png" alt="TinyLink Logo">
+</p>
 
 TinyLink is a **lightweight fine-tuned LLM** that translates natural language instructions into commands for controlling drones and ground robots via MAVLink. Unlike cloud-based APIs, TinyLink runs **fully locally** on your laptop/desktop or embedded platforms (e.g., Jetson, Raspberry Pi) no high-end GPU or massive RAM required.
 
----
+
+![Demo](images/demo-1.png)
 
 ## Features 
 - Translates plain text instructions into MAVLink commands.
@@ -18,13 +23,11 @@ TinyLink is a **lightweight fine-tuned LLM** that translates natural language in
   5. Change mode (limited modes supported)
   6. Move in X, Y, Z (Copter and Rover)
 
----
-
 ## Performance & Tested Platforms  
 
 | Platform                | RAM              | Inference Time (avg) | Status      |
 |-------------------------|------------------|-----------------------|-------------|
-| Win 11 (App) & WSL2(SITL)         | 16 GB  | 1.7 - 4 s (Avg 2.2s)          | ✅ Tested   |
+| Win 11 (App) & WSL2 (SITL)         | 16 GB  | 1.7 - 4s (Avg 2.2s)          | ✅ Tested   |
 | Raspberry Pi 5          | 4 GB   | 0.8 - 2s (Avg 1.5s)           | ✅ Tested |
 | NVIDIA Jetson Nano      | -                | -                     | ❌ Not tested  |
 
@@ -32,8 +35,6 @@ TinyLink is a **lightweight fine-tuned LLM** that translates natural language in
 **Notes**: 
 - Performance may vary based on prompt length, hardware specs, and background processes.
 - Running SITL/Gazebo on a separate machine can improve performance significantly.
-
----
 
 ## Installation
 
@@ -59,7 +60,7 @@ bash setup.sh
 cd tinylink
 setup.bat
 ```
----
+
 ## Usage
 
 ### 1. Start ArduPilot SITL
@@ -105,8 +106,6 @@ For assessing the inference time taken by the LLM, you can add the following fla
 ```
 python main.py --connection udp:*IP*:*PORT* --time
 ```
-
----
 
 ## Contributing
 
