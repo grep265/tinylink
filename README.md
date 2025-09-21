@@ -109,7 +109,4 @@ python main.py --connection udp:*IP*:*PORT* --time
 
 ## Contributing
 
-Contributions are welcome! You can:
-
-- Suggest/add support for more MAVLink commands
-- Test on new platforms (PRs with benchmark results encouraged)
+Contributions are welcome! Suggest new MAVLink commands, test on hardware and share results, propose integrations with tools (e.g., GCS, ROS), etc.
