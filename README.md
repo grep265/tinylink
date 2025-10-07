@@ -14,7 +14,7 @@ If you find TinyLink useful, please give it a ⭐ star.
 - Translates plain text instructions into MAVLink commands.
 - Runs entirely on-device for enhanced privacy. No API keys or cloud dependency.
 - Runs on everyday hardware; no GPU or excessive RAM needed.
-- Tested with ArduPilot SITL.
+- Tested with ArduPilot and PX4-Gazebo SITL.
 - Achieves **0.9–2.2s** inference times on CPU, depending on hardware.
 - Supported Commands:
   1. Arm
@@ -41,8 +41,19 @@ If you find TinyLink useful, please give it a ⭐ star.
 ## Installation
 
 ### 0. Pre-requisites
-As of now, it has only been tested with ArduPilot SITL.
-- **ArduPilot SITL**: Ensure ArduPilot SITL is installed and configured. Refer to the [ArduPilot documentation](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html) for setup instructions. As an alternative, you can use a docker container [ArduPilot SITL docker container](https://hub.docker.com/r/grep007/ardupilot-sitl-gui).
+As of now, it has been tested with ArduPilot & PX4 SITL/Gazebo.
+
+<details>
+<summary>ArduPilot</summary>
+  Ensure ArduPilot SITL is installed and configured. Refer to the <a href="https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html">ArduPilot documentation</a> for setup instructions.
+  As an alternative, you can use a docker container: <a href="https://hub.docker.com/r/grep007/ardupilot-sitl-gui">ArduPilot SITL docker container</a>.
+</details>
+
+<details>
+<summary>PX4</summary>
+  Ensure PX4-Gazebo SITL is installed and configured. Refer to the <a href="https://docs.px4.io/main/en/dev_setup/dev_env.html">PX4 documentation</a> for setup instructions.
+  If you're using Windows & WSL2, follow these steps to connect QGroundControl (Windows side) to the simulation (WSL2): <a href="https://docs.px4.io/main/en/dev_setup/dev_env_windows_wsl.html#qgroundcontrol-on-windows">QGroundControl on Windows</a>.
+</details>
 
 ### 1. Clone this repository
 Clone the TinyLink repository to your local machine:
@@ -73,18 +84,46 @@ Run the appropriate setup script for your OS. The setup script installs all nece
 
 ## Usage
 
-### 1. Start ArduPilot SITL
+### 1. Launch SITL
+<details>
+<summary>ArduPilot</summary>
 
-In one terminal, launch the ArduPilot SITL environment for your desired vehicle (e.g., Copter). Replace `*IP*` and `*PORT*` with the appropriate values for your setup.
+  ### ArduPilot SITL
 
-Example for Copter:
-```
-cd ardupilot
-sim_vehicle.py -v ArduCopter --map --console -I0 --out=udp:*IP*:*PORT*
-```
+  In one terminal, launch the ArduPilot SITL environment for your desired vehicle (e.g., Copter). Replace `*IP*` and `*PORT*` with the appropriate values for your setup.
+
+  Example for Copter:
+  ```bash
+  cd ardupilot
+  sim_vehicle.py -v ArduCopter --map --console -I0 --out=udp:*IP*:*PORT*
+  ```
+</details>
+
+
+<details>
+<summary>PX4</summary>
+
+  ### PX4-Gazebo SITL
+
+  In one terminal, launch the PX4-Gazebo SITL environment for your desired vehicle (e.g., Copter).
+
+  Example for Copter:
+  ```bash
+  cd PX4-Autopilot
+  make px4_sitl gz_x500
+  ```
+  Connect to QGroundControl, following the instructions from the pre-requisites step. Then, in your SITL terminal type the following command:
+  ```bash
+  mavlink start -u 14551 -r 4000000 -t 172.28.0.1
+  ```
+  
+</details>
 
 ### 2. Run the App
-Run TinyLink in another terminal/PC.
+
+  Run TinyLink in another terminal/PC.
+
+#### 2.1 ArduPilot
 
 <details>
 <summary>Linux / Mac</summary>
@@ -106,6 +145,35 @@ Run TinyLink in another terminal/PC.
   ```
 </details>
 
+#### 2.2 PX4
+<details>
+<summary>Linux / Mac</summary>
+
+  ```bash
+  cd tinylink
+  source tinylink-env/bin/activate
+  python main.py --connection udpin://172.28.0.1:14550 --px4
+  ```
+</details>
+
+<details>
+<summary>Windows</summary>
+
+  ```bash
+  cd tinylink
+  .\tinylink-env\Scripts\activate
+  python main.py --connection udpin://172.28.0.1:14550 --px4
+  ```
+</details>
+
+<details>
+<summary>PX4 demo</summary>
+
+  <p align="center">
+    <img src="images/px4-demo.png" alt="PX4 - Demo">
+  </p>
+</details>
+
 ### 3. Type instructions
 
 Examples of instructions:
@@ -116,15 +184,31 @@ Examples of instructions:
 - move forward 80m
 - switch to guided mode
 - Climb 40m
+- switch to offboard mode
 ```
 
 ### 4. Measure inference time (Optional)
 
 For assessing the inference time taken by the LLM, you can add the following flag.
 
-```
-python main.py --connection udp:*IP*:*PORT* --time
-```
+<details>
+<summary>Ardupilot</summary>
+
+  ```bash
+  python main.py --connection udp:*IP*:*PORT* --time
+  ```
+</details>
+
+
+<details>
+<summary>PX4</summary>
+
+  ```bash
+  python main.py --time --connection udpin://172.28.0.1:14550 --px4
+  ```
+</details>
+
+Results in a Raspberry Pi 5:
 <details>
 <summary>Raspberry Pi 5</summary>
 
