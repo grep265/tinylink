@@ -21,8 +21,15 @@ If you find TinyLink useful, please give it a ⭐ star.
   2. Disarm
   3. Takeoff
   4. Land
-  5. Change mode (limited modes supported)
-  6. Move in X, Y, Z (Copter and Rover)
+  5. Return to home
+  6. Change mode (limited modes supported)
+  7. Move in X, Y, Z (Copter and Rover)
+- Supported flight modes:
+
+| Platform   | Flight Modes                                                     | References                                                                                      |
+|------------|------------------------------------------------------------------|-------------------------------------------------------------------------------------------------|
+| ArduPilot  | Guided, Auto, RTL, Loiter, Althold, FBWA, FBWB, Cruise, Steering, etc | [Copter](https://ardupilot.org/copter/docs/flight-modes.html) [Rover](https://ardupilot.org/rover/docs/rover-control-modes.html) [Plane](https://ardupilot.org/plane/docs/flight-modes.html) |
+| PX4        | Takeoff, Land, Offboard, Hold, Return                                     | [Multi-copter](https://docs.px4.io/main/en/flight_modes_mc/)                                      |
 
 ## Performance & Tested Platforms  
 
@@ -32,6 +39,7 @@ If you find TinyLink useful, please give it a ⭐ star.
 | Win 11 (TinyLink)         | 16 GB  | 0.5 - 1.2s (Avg 0.9s)          | ✅ Tested   |
 | Raspberry Pi 5          | 4 GB   | 0.8 - 2s (Avg 1.5s)           | ✅ Tested |
 | NVIDIA Jetson Nano      | -                | -                     | ❌ Not tested  |
+| Win 11 (TinyLink) & WSL2 (PX4 Gazebo-SITL)        | 16 GB  | 5.2 - 22s (Avg 11.34s)          | ✅ Tested   |
 
 
 **Notes**: 
