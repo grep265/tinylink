@@ -10,7 +10,7 @@ call %VENV_NAME%\Scripts\activate
 echo Virtual environment activated.
 
 echo Installing packages...
-pip install llama-cpp-python pymavlink huggingface_hub
+pip install llama-cpp-python pymavlink huggingface_hub mavsdk
 echo Packages installed.
 
 echo Downloading model ...

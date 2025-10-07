@@ -27,7 +27,7 @@ SUPPORTED_COMMANDS = {
 }
 
 SUPPORTED_MODES = {"AUTO", "GUIDED", "RTL", "STABILIZE", "LOITER", "POSHOLD", "ALTHOLD","FBWA", "CRUISE", 
-                   "MANUAL", "FBWB", "ACRO","STEERING","CIRCLE"}
+                   "MANUAL", "FBWB", "ACRO","STEERING","CIRCLE","HOLD","OFFBOARD","MISSION"}
 
 def validate_and_parse(llm_output: str):
     """
