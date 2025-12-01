@@ -232,3 +232,6 @@ TinyLink uses a LLM, which means it can occasionally misinterpret or “hallucin
 ## Contributing
 
 Contributions are welcome! Suggest new MAVLink commands, test on hardware and share results, propose integrations with other software tools (e.g., GCS, ROS), etc. You can share your feedback, ideas, or demo images in the [GitHub Discussions](https://github.com/grep265/tinylink/discussions).
+
+## License
+This project is licensed under the Apache License 2.0 — see the [LICENSE](./LICENSE) file for details.
